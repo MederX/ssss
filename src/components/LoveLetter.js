@@ -119,8 +119,9 @@ const LetterContent = styled.div`
   text-align: center;
   position: relative;
   z-index: 1;
-  height: 100%;
-  overflow-y: auto;
+  max-height: 60vh;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
   padding-right: 10px;
 
   &::-webkit-scrollbar {

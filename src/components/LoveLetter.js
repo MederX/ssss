@@ -230,6 +230,13 @@ const LoveLetter = () => {
     }
   };
 
+  const handleScrollUp = (e) => {
+    e.stopPropagation(); // Prevent triggering envelope open/close
+    if (letterContentRef.current) {
+      letterContentRef.current.scrollBy({ top: -100, behavior: 'smooth' });
+    }
+  };
+
   return (
     <EnvelopeContainer 
       onClick={handleClick}
@@ -259,31 +266,46 @@ const LoveLetter = () => {
             defaultPosition={{ x: 0, y: 0 }}
           >
             <Letter>
-              <LetterContent className="letter-content" ref={letterContentRef}>
-                <p>Жааааныыыым,</p>
-                <p>
-                  Я начал влюбляться в тебя постепенно. Понял что окончательно влюбился в тебя когда начинал искать тебя везде.
-                  Твоя улыбка, твой голос, глаза, волосы, руки, ноги, просто заставляли и заставляют меня умиляться каждый раз жаным.
-                </p>
-                <p>
-                  Я люблю тебя больше чем могу выразить словами лапуська.
-                </p>
-                <p>
-                  Твоя душа добрая и ПИКМИ характер досум притянули меня хахахах,
-                  такая хорошая, такая красивая, такая жаным мне с тобой так хорошо просто,
-                  спасибо за то что ты есть иххихи.
-                </p>
-                <p>
-                  Досуууууууумъхххх бозььь,
-                </p>
-                <p>Вечно твой пикми досун,</p>
-                <p>❤️</p>
-                <ImageContainer>
-                  <ImageFrame>
-                    <img src={staticImage} alt="Love memory" />
-                  </ImageFrame>
-                </ImageContainer>
-              </LetterContent>
+              <button
+                onClick={handleScrollUp}
+                style={{
+                  margin: '0 auto 8px auto', display: 'block', borderRadius: '50%', border: 'none',
+                  background: '#ff6b6b', color: 'white', width: 40, height: 40, fontSize: 24, cursor: 'pointer'
+                }}
+              >
+                ↑
+              </button>
+              <Draggable
+                handle=".letter-content"
+                bounds="parent"
+                defaultPosition={{ x: 0, y: 0 }}
+              >
+                <LetterContent className="letter-content" ref={letterContentRef}>
+                  <p>Жааааныыыым,</p>
+                  <p>
+                    Я начал влюбляться в тебя постепенно. Понял что окончательно влюбился в тебя когда начинал искать тебя везде.
+                    Твоя улыбка, твой голос, глаза, волосы, руки, ноги, просто заставляли и заставляют меня умиляться каждый раз жаным.
+                  </p>
+                  <p>
+                    Я люблю тебя больше чем могу выразить словами лапуська.
+                  </p>
+                  <p>
+                    Твоя душа добрая и ПИКМИ характер досум притянули меня хахахах,
+                    такая хорошая, такая красивая, такая жаным мне с тобой так хорошо просто,
+                    спасибо за то что ты есть иххихи.
+                  </p>
+                  <p>
+                    Досуууууууумъхххх бозььь,
+                  </p>
+                  <p>Вечно твой пикми досун,</p>
+                  <p>❤️</p>
+                  <ImageContainer>
+                    <ImageFrame>
+                      <img src={staticImage} alt="Love memory" />
+                    </ImageFrame>
+                  </ImageContainer>
+                </LetterContent>
+              </Draggable>
               <button
                 onClick={handleScrollDown}
                 style={{

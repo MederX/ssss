@@ -223,7 +223,8 @@ const LoveLetter = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleScrollDown = () => {
+  const handleScrollDown = (e) => {
+    e.stopPropagation(); // Prevent triggering envelope open/close
     if (letterContentRef.current) {
       letterContentRef.current.scrollBy({ top: 100, behavior: 'smooth' });
     }
@@ -283,10 +284,13 @@ const LoveLetter = () => {
                   </ImageFrame>
                 </ImageContainer>
               </LetterContent>
-              <button onClick={handleScrollDown} style={{
-                margin: '8px auto', display: 'block', borderRadius: '50%', border: 'none',
-                background: '#ff6b6b', color: 'white', width: 40, height: 40, fontSize: 24, cursor: 'pointer'
-              }}>
+              <button
+                onClick={handleScrollDown}
+                style={{
+                  margin: '8px auto', display: 'block', borderRadius: '50%', border: 'none',
+                  background: '#ff6b6b', color: 'white', width: 40, height: 40, fontSize: 24, cursor: 'pointer'
+                }}
+              >
                 ↓
               </button>
             </Letter>

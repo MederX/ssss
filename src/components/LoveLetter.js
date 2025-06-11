@@ -98,7 +98,9 @@ const Letter = styled.div`
   padding: 20px;
   box-sizing: border-box;
   position: relative;
-  overflow: hidden;
+  overflow: auto;
+  max-height: 60vh;
+  -webkit-overflow-scrolling: touch;
 
   &:before {
     content: '';
@@ -119,36 +121,28 @@ const LetterContent = styled.div`
   text-align: center;
   position: relative;
   z-index: 1;
-  max-height: 60vh;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
   padding-right: 10px;
 
   &::-webkit-scrollbar {
     width: 6px;
   }
-
   &::-webkit-scrollbar-track {
     background: rgba(255, 107, 107, 0.1);
     border-radius: 3px;
   }
-
   &::-webkit-scrollbar-thumb {
     background: rgba(255, 107, 107, 0.3);
     border-radius: 3px;
   }
-
   p {
     margin: 0.5em 0;
     text-shadow: 1px 1px 1px rgba(0, 0, 0, 0.1);
   }
-
   p:first-child {
     font-size: 1.4em;
     color: #ff6b6b;
     margin-bottom: 1em;
   }
-
   p:last-child {
     font-size: 1.6em;
     margin-top: 1em;

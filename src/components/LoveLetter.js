@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import styled from '@emotion/styled';
 import Draggable from 'react-draggable';
 
@@ -98,10 +98,6 @@ const Letter = styled.div`
   padding: 20px;
   box-sizing: border-box;
   position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   &:before {
     content: '';
     position: absolute;
@@ -122,11 +118,9 @@ const LetterContent = styled.div`
   position: relative;
   z-index: 1;
   padding-right: 10px;
-  max-height: 180px;
+  max-height: 300px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
-  width: 100%;
-  margin-bottom: 16px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -203,6 +197,7 @@ const LoveLetter = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [hearts, setHearts] = useState([]);
+  const letterContentRef = useRef(null);
 
   // The provided image as a static import
   const staticImage = require('../assets/static-photo.jpg');
@@ -224,6 +219,12 @@ const LoveLetter = () => {
 
   const handleClick = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleScrollDown = () => {
+    if (letterContentRef.current) {
+      letterContentRef.current.scrollBy({ top: 100, behavior: 'smooth' });
+    }
   };
 
   return (
@@ -255,7 +256,7 @@ const LoveLetter = () => {
             defaultPosition={{ x: 0, y: 0 }}
           >
             <Letter>
-              <LetterContent className="letter-content">
+              <LetterContent className="letter-content" ref={letterContentRef}>
                 <p>Жааааныыыым,</p>
                 <p>
                   Я начал влюбляться в тебя постепенно. Понял что окончательно влюбился в тебя когда начинал искать тебя везде.
@@ -274,12 +275,18 @@ const LoveLetter = () => {
                 </p>
                 <p>Вечно твой пикми досун,</p>
                 <p>❤️</p>
+                <ImageContainer>
+                  <ImageFrame>
+                    <img src={staticImage} alt="Love memory" />
+                  </ImageFrame>
+                </ImageContainer>
               </LetterContent>
-              <ImageContainer>
-                <ImageFrame>
-                  <img src={staticImage} alt="Love memory" />
-                </ImageFrame>
-              </ImageContainer>
+              <button onClick={handleScrollDown} style={{
+                margin: '8px auto', display: 'block', borderRadius: '50%', border: 'none',
+                background: '#ff6b6b', color: 'white', width: 40, height: 40, fontSize: 24, cursor: 'pointer'
+              }}>
+                ↓
+              </button>
             </Letter>
           </Draggable>
         </LetterWrapper>

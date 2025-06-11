@@ -87,6 +87,9 @@ const LetterWrapper = styled.div`
   transition: opacity 0.3s ease;
   cursor: move;
   z-index: ${props => props.isOpen ? '2' : '0'};
+  overflow: auto;
+  max-height: 60vh;
+  -webkit-overflow-scrolling: touch;
 `;
 
 const Letter = styled.div`
@@ -98,10 +101,6 @@ const Letter = styled.div`
   padding: 20px;
   box-sizing: border-box;
   position: relative;
-  overflow: auto;
-  max-height: 60vh;
-  -webkit-overflow-scrolling: touch;
-
   &:before {
     content: '';
     position: absolute;

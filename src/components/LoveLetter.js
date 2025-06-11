@@ -98,6 +98,10 @@ const Letter = styled.div`
   padding: 20px;
   box-sizing: border-box;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
   &:before {
     content: '';
     position: absolute;
@@ -118,9 +122,11 @@ const LetterContent = styled.div`
   position: relative;
   z-index: 1;
   padding-right: 10px;
-  max-height: 300px;
+  max-height: 180px;
   overflow: auto;
   -webkit-overflow-scrolling: touch;
+  width: 100%;
+  margin-bottom: 16px;
 
   &::-webkit-scrollbar {
     width: 6px;
@@ -268,12 +274,12 @@ const LoveLetter = () => {
                 </p>
                 <p>Вечно твой пикми досун,</p>
                 <p>❤️</p>
-                <ImageContainer>
-                  <ImageFrame>
-                    <img src={staticImage} alt="Love memory" />
-                  </ImageFrame>
-                </ImageContainer>
               </LetterContent>
+              <ImageContainer>
+                <ImageFrame>
+                  <img src={staticImage} alt="Love memory" />
+                </ImageFrame>
+              </ImageContainer>
             </Letter>
           </Draggable>
         </LetterWrapper>
